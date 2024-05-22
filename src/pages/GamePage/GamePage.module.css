@@ -1,0 +1,211 @@
+* {
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.scoreBoard {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+
+.gameScore__player {
+    margin: auto;
+    font-size: 35px;
+    font-weight: bold;
+    color: white;
+    width: 250px;
+    text-align: center;
+}
+
+.gameScore__title {
+    color: white;
+    margin: 7px;
+}
+
+.showHistory {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 10px;
+    margin-top: 25px;
+}
+
+.gameScore__content {
+    width: 350px;
+    font-size: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    border: 1px solid white;
+    border-radius: 20px;
+}
+
+.gameCont {
+    min-height: 91vh;
+    height: 100%;
+   padding-top: 80px;
+}
+
+.gameScore {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.game {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.showHistory__buttons {
+    display: block;
+    margin: 0 auto;
+    border: 1px solid #000;
+    border-radius: 20px;
+    background-color: #fff;
+    padding: 10px 20px;
+    cursor: pointer;
+    -webkit-transition: all linear 0.3s;
+    -o-transition: all linear 0.3s;
+    transition: all linear 0.3s
+}
+
+.showHistory__buttons:hover {
+    background-color: #ccc;
+}
+
+#game__board {
+    border-collapse: collapse;
+    -webkit-user-select: none;
+    /* Chrome all / Safari all */
+    -moz-user-select: none;
+    /* Firefox all */
+    -ms-user-select: none;
+    /* IE 10+ */
+    user-select: none;
+}
+
+td {
+    width: 60px;
+    height: 60px;
+    font-size: 40px;
+    text-align: center;
+    vertical-align: middle;
+    color: white;
+    border: 3px solid white;
+        text-shadow: 1px 2px 3px black;
+}
+
+/* td.x {
+    background-color: #abfdab;
+    color: black;
+    background-size: 5px;
+}
+
+td.o {
+    background-color: #f99;
+    color: black;
+} */
+
+td:hover {
+    background-color: #ccc;
+    cursor: pointer;
+}
+
+tr td:first-child {
+    border-left-color: transparent;
+}
+
+tr td:last-child {
+    border-right-color: transparent;
+}
+
+tr:first-of-type td {
+    border-top-color: transparent;
+}
+
+tr:first-of-type td:nth-child(1) {
+    border-left-color: transparent;
+}
+
+tr:first-of-type td:last-of-type {
+    border-right-color: transparent;
+}
+
+tr:last-of-type td {
+    border-bottom-color: transparent;
+}
+
+tr:last-of-type td:nth-child(1) {
+    border-left-color: transparent;
+    border-bottom-color: transparent;
+}
+
+tr:last-of-type td:last-child {
+    border-right-color: transparent;
+    border-bottom-color: transparent;
+}
+
+.choosePlayer__content {
+    display: flex;
+    justify-content: space-around;
+}
+
+.choosePlayer__title {
+    text-align: center;
+    color: white;
+        text-shadow: 1px 2px 3px black;
+}
+
+.choosePlayer__content__description {
+    color: white;
+    display: flex;
+    flex-direction: column;
+        text-shadow: 1px 2px 3px black;
+}
+
+.choosePlayer__content__description__text {
+    font-size: 25px;
+    display: flex;
+    gap: 7px;
+    align-items: center;
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    color: white;
+    font-weight: bold;
+    text-shadow: 1px 2px 3px black;
+}
+
+.fa:hover {
+    color: #ccc;
+}
+
+.fa {
+    margin: 0 auto;
+    cursor: pointer;
+    margin-bottom: 20px;
+}
+
+.restartButton {
+    background-color: #e84a5f;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    margin: 80px auto;
+    display: block;
+}
+
+.restartButton:hover {
+    background-color: #d1384e;
+}

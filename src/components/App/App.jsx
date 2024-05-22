@@ -1,11 +1,9 @@
-import { lazy, Suspense, useEffect } from "react";
+import { lazy, Suspense } from "react";
 import Layout from "../Layout/Layout";
 import { Route, Routes } from "react-router-dom";
 import RegisterPage from "../../pages/RegisterPage/RegisterPage";
 import LoginPage from "../../pages/LoginPage/LoginPage";
-import { useDispatch, useSelector } from "react-redux";
-import { refreshUser } from "../../redux/auth/operations";
-import { selectIsRefreshing } from "../../redux/auth/selectors";
+import GamePage from "../../pages/GamePage/GamePage";
 import RestrictedRout from "../RestrictedRout/RestrictedRout";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
@@ -15,16 +13,7 @@ const ContactsPage = lazy(() =>
 );
 
 function App() {
-  const dispatch = useDispatch();
-  const isRefreshing = useSelector(selectIsRefreshing);
-
-  useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
-
-  return isRefreshing ? (
-    <b>Refreshing user. Please wait...</b>
-  ) : (
+  return (
     <Layout>
       <Suspense fallback={null}>
         <Routes>
@@ -40,13 +29,25 @@ function App() {
             element={
               <RestrictedRout
                 component={<LoginPage />}
+                І
                 redirectTo="/contacts"
               />
             }
           />
-          <Route
+          {/* <Route
             path="/contacts"
-            element={<PrivateRoute component={<ContactsPage />} redirectTo="/login" />}
+            element={
+              <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
+            }
+          /> */}
+
+          <Route path="/contacts" element={<ContactsPage />} />
+          <Route path="/game" element={<GamePage />} />
+          <Route
+            path="/game"
+            element={
+              <PrivateRoute component={<GamePage />} redirectTo="/login" />
+            }
           />
         </Routes>
       </Suspense>

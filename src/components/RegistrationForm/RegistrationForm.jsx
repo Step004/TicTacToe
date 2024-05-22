@@ -24,8 +24,7 @@ export default function RegistrationForm() {
   return (
     <Formik
       initialValues={{
-        name: "",
-        email: "",
+        username: "",
         password: "",
       }}
       onSubmit={handleSubmit}
@@ -33,11 +32,7 @@ export default function RegistrationForm() {
       <Form className={css.form} autoComplete="off">
         <label className={css.label}>
           Username
-          <Field type="text" name="name" />
-        </label>
-        <label className={css.label}>
-          Email
-          <Field type="email" name="email" />
+          <Field type="text" name="username" />
         </label>
         <label className={css.label}>
           Password

@@ -1,5 +1,9 @@
 .container {
-    width: 780px;
+    min-height: 100vh;
+    height: 100%;
+    width: 1280px;
     margin-left: auto;
     margin-right: auto;
+    padding: 0 60px;
+    background-image: url("../../image/wood.jpg");
 }

@@ -1,6 +1,32 @@
+import css from './HomePage.module.css';
+
 export default function HomePage() {
-    return <>
-    <h2>Hello my friend. If you want to create or see your contacts you need to log in or registration.</h2>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero dolor quisquam labore iste iure, nesciunt sed cupiditate eos dolore voluptatem explicabo libero dolorem impedit hic accusamus, repellendus unde? Doloremque, impedit!</p>
-    </>
+    return (
+      <div className={css.home}>
+        <h1>
+          Привіт, друже! Якщо ти хочеш зіграти в цікаву гру тобі необхідно
+          зареєструватись.
+        </h1>
+        <h2>Правила гри:</h2>
+        <h3>
+          1 Мета гри: Виграти, створивши лінію з п'яти своїх символів (або
+          "хрестиків" або "ноликів") по горизонталі, вертикалі або діагоналі.
+        </h3>
+        <h3>
+          2 Початок гри: Гравці чергуються робити ходи. Перший гравець розміщує
+          "хрестик", а другий - "нолик".
+        </h3>
+        <h3>
+          3 Ходи гравців: Гравці вибирають пусту клітинку на полі та розміщують
+          в ній свій символ.
+        </h3>
+        <h3>
+          4 Перемога: Гравець перемагає, якщо він збудував лінію з п'яти своїх
+          символів (хрестиків або ноликів) по горизонталі, вертикалі або
+          діагоналі. Гра завершується нічиєю, якщо всі клітинки на полі
+          заповнені, і лінія не збудована.
+        </h3>
+           
+      </div>
+    );
  }

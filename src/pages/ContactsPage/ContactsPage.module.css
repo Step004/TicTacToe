@@ -1,0 +1,161 @@
+h1 {
+    color: white;
+}
+
+.upPart {
+    display: flex;
+    justify-content: space-between;
+}
+.aboutUser{
+    height: 91vh;
+}
+
+.textChoose {
+    text-align: center;
+    color: white;
+}
+
+.allGame {
+    color: white;
+    font-weight: 700;
+    font-size: large;
+}
+
+.rating {
+    color: white;
+    font-weight: 700;
+    font-size: large;
+}
+
+.typeSelectors {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+
+
+
+.buttonDif {
+    display: block;
+    cursor: pointer;
+    margin: 25px auto;
+    padding: 12.5px 30px;
+    border: 0;
+    border-radius: 100px;
+    background-color: #2ba8fb;
+    color: #ffffff;
+    font-weight: Bold;
+    font-size: large;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+}
+
+.buttonDif:hover {
+    background-color: #6fc5ff;
+    box-shadow: 0 0 20px #6fc5ff50;
+    transform: scale(1.1);
+}
+
+.buttonDif:active {
+    background-color: #3d94cf;
+    transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+    box-shadow: none;
+    transform: scale(0.98);
+}
+
+
+
+
+.buttonPlay {
+    display: block;
+    margin: 25px auto;
+    background-color: #8B0000;
+    color: #FF6347;
+    border: 1px solid #FF6347;
+    border-bottom-width: 4px;
+    font-weight: bold;
+    font-size: xx-large;
+    overflow: hidden;
+    position: relative;
+    padding: 8px 16px;
+    /* Змінив px на em для більшої адаптивності */
+    border-radius: 0.375rem;
+    /* Розмір радіуса відповідає 6px */
+    outline: none;
+    transition-duration: 0.3s;
+    width: 180px;
+    height: 50px;
+    cursor: pointer;
+}
+
+/* Подкладка при наведенні */
+.buttonPlay:hover {
+    filter: brightness(1.5);
+    border-top-width: 4px;
+    border-bottom-width: 0;
+    opacity: 0.75;
+}
+
+/* Подкладка при натисканні */
+.buttonPlay:active {
+    opacity: 0.75;
+}
+
+/* Підкладка */
+.buttonPlay span {
+    background-color: #FF6347;
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    top: -150%;
+    left: 0;
+    display: inline-flex;
+    width: 320px;
+    /* Збільшив ширину до 80px * 4 для збільшення ширини тексту */
+    height: 20px;
+    /* Збільшив висоту до 5px * 4 для збільшення висоти підкладки */
+    border-radius: 0.375rem;
+    /* Розмір радіуса відповідає 6px */
+    opacity: 0.5;
+    transition-duration: 0.5s;
+}
+
+/* Підкладка при наведенні на кнопку */
+.buttonPlay:hover span {
+    top: -150%;
+}
+
+select {
+    appearance: none;
+    /* Забирає стандартний вигляд браузера */
+    padding: 10px;
+    /* Додаткові відступи */
+    font-size: 16px;
+    /* Розмір шрифту */
+    border: 2px rgb(255, 255, 255) solid;;
+    /* Видаляє рамку */
+    border-radius: 4px;
+    /* Закруглює кути */
+    background-color: transparent;
+    /* Прозорий фон */
+    color: #fefefe;
+    /* Колір тексту */
+    outline: none;
+    /* Забирає виділення при фокусі */
+    cursor: pointer;
+    /* Змінює вигляд курсору */
+}
+
+/* Стилізація опцій */
+option {
+    background-color: #000000;
+    /* Фон */
+    color: white;
+    /* Колір тексту */
+}
+
+/* Стилізація обраної опції */
+select:focus option:checked {
+    background-color: #ccc;
+    /* Колір фону обраної опції при фокусі */
+}
