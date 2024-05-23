@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import { register } from "../../redux/auth/operations";
 import css from "./RegistrationForm.module.css";
 import toast from "react-hot-toast";
+import { FaUser, FaLock } from "react-icons/fa";
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
@@ -22,24 +23,39 @@ export default function RegistrationForm() {
   };
 
   return (
-    <Formik
-      initialValues={{
-        username: "",
-        password: "",
-      }}
-      onSubmit={handleSubmit}
-    >
-      <Form className={css.form} autoComplete="off">
-        <label className={css.label}>
-          Username
-          <Field type="text" name="username" />
-        </label>
-        <label className={css.label}>
-          Password
-          <Field type="password" name="password" />
-        </label>
-        <button type="submit">Register</button>
-      </Form>
-    </Formik>
+    <div className={css.container}>
+      <Formik
+        initialValues={{
+          username: "",
+          password: "",
+        }}
+        onSubmit={handleSubmit}
+      >
+        <Form className={css.form_main} autoComplete="off">
+          <p className={css.heading}>Login</p>
+          <div className={css.inputContainer}>
+            <FaUser className={css.inputIcon} />
+            <Field
+              type="text"
+              name="username"
+              className={css.inputField}
+              placeholder="Username"
+            />
+          </div>
+          <div className={css.inputContainer}>
+            <FaLock className={css.inputIcon} />
+            <Field
+              type="password"
+              name="password"
+              className={css.inputField}
+              placeholder="Password"
+            />
+          </div>
+          <button type="submit" className={css.button}>
+            Register
+          </button>
+        </Form>
+      </Formik>
+    </div>
   );
 }

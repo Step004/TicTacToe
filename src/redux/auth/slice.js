@@ -4,7 +4,7 @@ import { logIn, logOut, register } from "./operations";
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-      username: null,
+    username: null,
     isLoggedIn: false,
   },
   extraReducers: (builder) =>
@@ -20,8 +20,7 @@ const authSlice = createSlice({
       .addCase(logOut.fulfilled, (state) => {
         state.username = null;
         state.isLoggedIn = false;
-      })
-      
+      }),
 });
 
 export default authSlice.reducer;

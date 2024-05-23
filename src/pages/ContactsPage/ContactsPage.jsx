@@ -12,6 +12,8 @@ export default function ContactsPage() {
   const [selectedOption, setSelectedOption] = useState("computer");
   const [selectedDifficulty, setSelectedDifficulty] = useState(1);
 
+
+
   const handleDifficultyChange = (value) => {
     const difficulty = Number(value);
     setSelectedDifficulty(difficulty);
@@ -30,7 +32,7 @@ export default function ContactsPage() {
     <div className={css.aboutUser}>
       <div className={css.upPart}>
         <div>
-          <h1>Степан {user.name}</h1>
+          <h1>{user.username}</h1>
           <img src={userPhoto} alt="userPhoto" />
         </div>
         <img src={gamePhoto} alt="gameField" width={350} height={350} />

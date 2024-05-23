@@ -1,12 +1,19 @@
+import { useSelector } from 'react-redux';
 import css from './HomePage.module.css';
+import { selectIsLoggedIn } from "../../redux/auth/selectors";
+
 
 export default function HomePage() {
+  const loggedIn = useSelector(selectIsLoggedIn);
+
+
     return (
       <div className={css.home}>
-        <h1>
+        {!loggedIn && <h1>
           Привіт, друже! Якщо ти хочеш зіграти в цікаву гру тобі необхідно
           зареєструватись.
-        </h1>
+        </h1>}
+        
         <h2>Правила гри:</h2>
         <h3>
           1 Мета гри: Виграти, створивши лінію з п'яти своїх символів (або

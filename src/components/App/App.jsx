@@ -29,20 +29,19 @@ function App() {
             element={
               <RestrictedRout
                 component={<LoginPage />}
-                І
                 redirectTo="/contacts"
               />
             }
           />
-          {/* <Route
+          <Route
             path="/contacts"
             element={
               <PrivateRoute component={<ContactsPage />} redirectTo="/login" />
             }
-          /> */}
+          />
 
-          <Route path="/contacts" element={<ContactsPage />} />
-          <Route path="/game" element={<GamePage />} />
+          {/* <Route path="/contacts" element={<ContactsPage />} /> */}
+          {/* <Route path="/game" element={<GamePage />} /> */}
           <Route
             path="/game"
             element={
