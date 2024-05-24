@@ -6,15 +6,19 @@ import LoginPage from "../../pages/LoginPage/LoginPage";
 import GamePage from "../../pages/GamePage/GamePage";
 import RestrictedRout from "../RestrictedRout/RestrictedRout";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import GamePageWithFriend from "../../pages/GamePageWithFriend/GamePageWithFriend";
 
 const HomePage = lazy(() => import("../../pages/HomePage/HomePage"));
 const ContactsPage = lazy(() =>
   import("../../pages/ContactsPage/ContactsPage")
 );
 
+
+const firstTime = Date.now();
+
 function App() {
   return (
-    <Layout>
+    <Layout firstTime={firstTime}>
       <Suspense fallback={null}>
         <Routes>
           <Route path="/" element={<HomePage />} />
@@ -46,6 +50,15 @@ function App() {
             path="/game"
             element={
               <PrivateRoute component={<GamePage />} redirectTo="/login" />
+            }
+          />
+          <Route
+            path="/gameFriend"
+            element={
+              <PrivateRoute
+                component={<GamePageWithFriend />}
+                redirectTo="/login"
+              />
             }
           />
         </Routes>

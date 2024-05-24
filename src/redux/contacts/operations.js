@@ -1,12 +1,11 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
-export const fetchContacts = createAsyncThunk(
-  "fetchAllContacts",
-  async (_, thunkAPI) => {
+export const createGameInfo = createAsyncThunk(
+  "createInfoAboutUser",
+  async (gameInfo, thunkAPI) => {
     try {
-      const response = await axios.get("/contacts");
+      const response = await axios.post("/game", gameInfo);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -14,11 +13,16 @@ export const fetchContacts = createAsyncThunk(
   }
 );
 
-export const addContact = createAsyncThunk(
-  "addContact",
-  async (newContact, thunkAPI) => {
+export const updateGameInfo = createAsyncThunk(
+  "updateInfoAboutUser",
+  async ({ username, time, victory, allGames }, thunkAPI) => {
     try {
-      const response = await axios.post("/contacts", newContact);
+      const response = await axios.put(`/game/${username}`, {
+        username,
+        time,
+        victory,
+        allGames,
+      });
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);
@@ -26,22 +30,11 @@ export const addContact = createAsyncThunk(
   }
 );
 
-export const deleteContact = createAsyncThunk(
-  "deleteContact",
-  async (contactId, thunkAPI) => {
+export const getGameInfo = createAsyncThunk(
+  "getInfoAboutUser",
+  async (username, thunkAPI) => {
     try {
-      const response = await axios.delete(`/contacts/${contactId}`);
-      return response.data;
-    } catch (error) {
-      return thunkAPI.rejectWithValue(error.message);
-    }
-  }
-);
-export const updateContact = createAsyncThunk(
-  "updateUser",
-  async ({ id, name, number }, thunkAPI) => {
-    try {
-      const response = await axios.patch(`/contacts/${id}`, { name, number });
+      const response = await axios.get(`/game/${username}`);
       return response.data;
     } catch (error) {
       return thunkAPI.rejectWithValue(error.message);

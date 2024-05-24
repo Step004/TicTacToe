@@ -1,7 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { logOut } from "../auth/operations";
+import { updateGameInfo, getGameInfo } from "./operations";
+
 const contactInitialState = {
-  items: [],
+  items: {
+    time: null,
+    victory: null,
+    allGames: null,
+  },
   loading: false,
   error: false,
 };
@@ -11,13 +16,37 @@ const slice = createSlice({
   initialState: contactInitialState,
   extraReducers: (builder) =>
     builder
-     
-      .addCase(logOut.fulfilled, (state) => {
-        state.items = [];
+      .addCase(updateGameInfo.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(updateGameInfo.fulfilled, (state, action) => {
+        state.items.time = action.payload.time;
+        state.items.victory = action.payload.victory;
+        state.items.allGames = action.payload.allGames;
         state.loading = false;
         state.error = false;
       })
-      
+      .addCase(updateGameInfo.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      })
+      .addCase(getGameInfo.pending, (state) => {
+        state.loading = true;
+        state.error = false;
+      })
+      .addCase(getGameInfo.fulfilled, (state, action) => {
+        state.items.time = action.payload.time;
+        state.items.victory = action.payload.victory;
+        state.items.allGames = action.payload.allGames;
+
+        state.loading = false;
+        state.error = false;
+      })
+      .addCase(getGameInfo.rejected, (state) => {
+        state.loading = false;
+        state.error = true;
+      }),
 });
 
 export default slice.reducer;

@@ -5,14 +5,12 @@ import { logIn } from "../../redux/auth/operations";
 import { FaUser, FaLock } from "react-icons/fa";
 import css from "./LoginForm.module.css";
 
-export default function LoginForm() {
+export default function LoginForm( ) {
   const dispatch = useDispatch();
-
   const handleSubmit = (values, actions) => {
     dispatch(logIn(values))
       .unwrap()
       .then((response) => {
-        console.log(response);
         toast.success(`${response.message}!!!`);
       })
       .catch((error) => {
@@ -52,7 +50,7 @@ export default function LoginForm() {
               placeholder="Password"
             />
           </div>
-          <button type="submit" className={css.button}>
+          <button type="submit" className={css.button} >
             Log In
           </button>
           <a className={css.forgotLink} href="#">

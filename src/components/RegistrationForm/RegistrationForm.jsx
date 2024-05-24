@@ -4,6 +4,7 @@ import { register } from "../../redux/auth/operations";
 import css from "./RegistrationForm.module.css";
 import toast from "react-hot-toast";
 import { FaUser, FaLock } from "react-icons/fa";
+import { createGameInfo } from "../../redux/contacts/operations";
 
 export default function RegistrationForm() {
   const dispatch = useDispatch();
@@ -12,7 +13,8 @@ export default function RegistrationForm() {
     dispatch(register(values))
       .unwrap()
       .then((response) => {
-        console.log(response);
+        const gameInfo = { username: response.username, time: 0, victory: 0, allGames:0 };
+        dispatch(createGameInfo(gameInfo));
         toast.success("Success!!!");
       })
       .catch((error) => {
@@ -32,7 +34,7 @@ export default function RegistrationForm() {
         onSubmit={handleSubmit}
       >
         <Form className={css.form_main} autoComplete="off">
-          <p className={css.heading}>Login</p>
+          <p className={css.heading}>Registration</p>
           <div className={css.inputContainer}>
             <FaUser className={css.inputIcon} />
             <Field

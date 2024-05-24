@@ -10,7 +10,6 @@ const buildLinkClass = ({ isActive }) => {
 
 export default function Navigation() {
   const isLoggedIn = useSelector(selectIsLoggedIn);
-  // const isLoggedIn = true;
 
   return (
     <nav>
@@ -19,14 +18,19 @@ export default function Navigation() {
       </NavLink>
       {isLoggedIn && (
         <NavLink to="/contacts" className={buildLinkClass}>
-          Contacts
+          User
         </NavLink>
       )}
-      {isLoggedIn && (
+      {/* {isLoggedIn && (
         <NavLink to="/game" className={buildLinkClass}>
           Game
         </NavLink>
       )}
+      {isLoggedIn && (
+        <NavLink to="/gameFriend" className={buildLinkClass}>
+          Game
+        </NavLink>
+      )} */}
     </nav>
   );
 }

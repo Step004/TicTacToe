@@ -1,58 +1,20 @@
 import { useEffect, useRef } from "react";
-import GameLogic from "../../game/js/Logic/GameLogic.js";
-import View from "../../game/js/View/View.js";
+import GameLogicFriend from "../../game/js/Logic/GameLogicFriend.js";
+import ViewFriend from "../../game/js/View/ViewFriend.js";
 import $ from "jquery";
-import css from "./GamePage.module.css";
+import css from "./GamePageWithFriend.module.css";
 import { FaUser } from "react-icons/fa";
-import { FaRobot } from "react-icons/fa";
-import { useDispatch, useSelector } from "react-redux";
-import { updateGameInfo } from "../../redux/contacts/operations.js";
-import { selectInfoAboutUser } from "../../redux/contacts/selectors.js";
 
 
-export default function GamePage() {
+export default function GamePageWithFriend() {
   const gameLogicRef = useRef(null);
-  const user = useSelector((state) => state.auth);
-  const info = useSelector (selectInfoAboutUser);
-  const dispatch = useDispatch();
-
-  
-  const handleDispatch = () => {
-    // const computerCount = document.querySelector("#computerCount");
-    const playerCount = document.querySelector("#playerCount");
-    // const allGames = Number(computerCount.innerHTML) + Number(playerCount.innerHTML);
-    //     console.log(info);
-    const updatedInfo = {
-      username: user.username,
-      time: info.time,
-      victory: info.victory + Number(playerCount.innerHTML),
-      allGames: info.allGames + 1,
-    };
-    dispatch(updateGameInfo(updatedInfo))
-  };
- 
 
   useEffect(() => {
     // Ініціалізуємо логіку гри після того, як компонент було змонтовано
-    const view = new View();
-    gameLogicRef.current = new GameLogic(7, view);
+    const view = new ViewFriend();
+    gameLogicRef.current = new GameLogicFriend(7, view);
 
-      newParty();
-
-    $(document).ready(() => {
-      $("#user").click(() => {
-        newParty();
-      });
-
-      $("#computer").click(() => {
-        newParty();
-        gameLogicRef.current.computer.randomStep(
-          7, 
-          gameLogicRef.current.gameModel,
-          gameLogicRef.current.view
-        );
-      });
-    });
+    newParty();
 
     // Встановлюємо обробник кліків на всі клітинки гри
     const articles = $("#game__board td");
@@ -65,7 +27,7 @@ export default function GamePage() {
     restartButton.addEventListener("click", () => {
       newParty();
     });
-   
+
     return () => {
       // Прибирання обробників подій при розмонтуванні компонента
       restartButton.removeEventListener("click", () => {
@@ -86,26 +48,24 @@ export default function GamePage() {
       <div className={css.scoreBoard}>
         <div className={css.leftBoard}>
           <div className={css.choosePlayer}>
-            <h2 className={css.choosePlayer__title}>
-              Виберіть, хто буде ходить першим
-            </h2>
+            <h2 className={css.choosePlayer__title}>Хід гравця:</h2>
             <div id="players" className={css.choosePlayer__content}>
               <div className={css.choosePlayer__content__description}>
                 <button
-                  id="user"
+                  id="user1"
                   className={css.choosePlayer__content__description__text}
                 >
                   <FaUser />
-                  Ви
+                  Гравець 1
                 </button>
               </div>
               <div className={css.choosePlayer__content__description}>
                 <button
-                  id="computer"
+                  id="user2"
                   className={css.choosePlayer__content__description__text}
                 >
-                  Комп`ютер
-                  <FaRobot />
+                  Гравець 2
+                  <FaUser />
                 </button>
               </div>
             </div>
@@ -114,18 +74,14 @@ export default function GamePage() {
             <div className={css.gameScore__content}>
               <h2 className={css.gameScore__title}>Рахунок</h2>
               <p className={css.gameScore__player}>
-                Комп`ютер: <span id="computerCount">0 </span>
+                Гравець 1: <span id="computerCount">0 </span>
               </p>
               <p className={css.gameScore__player}>
-                Ви: <span id="playerCount">0</span>
+                Гравець 2: <span id="playerCount">0</span>
               </p>
             </div>
           </div>
-          <button
-            id="restartButton"
-            className={css.restartButton}
-            onClick={handleDispatch}
-          >
+          <button id="restartButton" className={css.restartButton}>
             Почати гру заново
           </button>
         </div>
