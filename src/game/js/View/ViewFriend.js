@@ -1,4 +1,5 @@
 import Swal from "sweetalert2";
+import css from "../../../pages/GamePageWithFriend/GamePageWithFriend.module.css";
 
 export default class View {
   constructor(gameLogic) {
@@ -11,10 +12,10 @@ export default class View {
 
   highlightCurrentPlayer(playerId) {
     if (this.currentPlayerElement) {
-      this.currentPlayerElement.classList.remove("highlight");
+      this.currentPlayerElement.classList.remove(css.highlight);
     }
     this.currentPlayerElement = document.getElementById(playerId);
-    this.currentPlayerElement.classList.add("highlight");
+    this.currentPlayerElement.classList.add(css.highlight);
   }
 
   updateUiAfterEndParty(message, currentPlayer) {
