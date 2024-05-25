@@ -1,7 +1,8 @@
 import axios from "axios";
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
-axios.defaults.baseURL = "http://localhost:8080";
+// axios.defaults.baseURL = "http://localhost:8080";
+axios.defaults.baseURL = "https://d444-91-224-171-233.ngrok-free.app";
 
 export const register = createAsyncThunk(
   "auth.register",
