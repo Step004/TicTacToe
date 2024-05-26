@@ -3,12 +3,12 @@ import SimpleGameObject from "../Players/SimpleGameObject.js";
 import View from "../View/View.js";
 
 export default class GameLogic {
-  constructor(lengthBoard) {
+  constructor(lengthBoard, handleDispatch) {
     this.gameModel = [];
     this.lengthBoard = lengthBoard;
     this.computer = new Computer("o");
     this.humanPlayer = new SimpleGameObject("x");
-    this.view = new View(this);
+    this.view = new View(this, handleDispatch);
     this.view.renderTable(lengthBoard);
     this.createGameModel();
   }

@@ -63,15 +63,17 @@ export default function ContactsPage() {
       )}
       {showDif && <RadioDif onChange={handleDifficultyChange} />}
       {selectedOption === "computer" ? (
-        <button className={css.buttonPlay}>
-          <span></span>
-          <NavLink to="/game">Грати</NavLink>
-        </button>
+        <NavLink to="/game">
+          <button className={css.buttonPlay}>
+            <span></span>Грати
+          </button>
+        </NavLink>
       ) : (
-        <button className={css.buttonPlay}>
-          <span></span>
-          <NavLink to="/gameFriend">Грати</NavLink>
-        </button>
+        <NavLink to="/gameFriend">
+          <button className={css.buttonPlay}>
+            <span></span>Грати
+          </button>
+        </NavLink>
       )}
     </div>
   );

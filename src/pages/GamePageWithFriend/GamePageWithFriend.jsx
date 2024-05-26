@@ -41,6 +41,10 @@ export default function GamePageWithFriend() {
     // Скидання UI гри на початок партії
     gameLogicRef.current.view.restart(document.getElementById("game__board"));
     gameLogicRef.current.clearModel();
+    const articles = $("#game__board td");
+    $(articles).click(function () {
+      gameLogicRef.current.clickOnCell(this);
+    });
   };
 
   return (

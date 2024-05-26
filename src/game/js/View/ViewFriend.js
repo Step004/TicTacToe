@@ -1,5 +1,6 @@
 import Swal from "sweetalert2";
 import css from "../../../pages/GamePageWithFriend/GamePageWithFriend.module.css";
+import $ from "jquery";
 
 export default class View {
   constructor(gameLogic) {
@@ -31,10 +32,8 @@ export default class View {
   }
 
   removeEvent() {
-    const elements = this.board.getElementsByTagName("td");
-    for (let element of elements) {
-      element.onclick = null;
-    }
+    const articles = $("#game__board td");
+    $(articles).off("click", this.clickHandler);
   }
 
   restart(board) {

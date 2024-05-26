@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import GameLogic from "../../game/js/Logic/GameLogic.js";
 import View from "../../game/js/View/View.js";
 import $ from "jquery";
@@ -9,35 +9,41 @@ import { useDispatch, useSelector } from "react-redux";
 import { updateGameInfo } from "../../redux/contacts/operations.js";
 import { selectInfoAboutUser } from "../../redux/contacts/selectors.js";
 
-
 export default function GamePage() {
   const gameLogicRef = useRef(null);
   const user = useSelector((state) => state.auth);
-  const info = useSelector (selectInfoAboutUser);
+  const info = useSelector(selectInfoAboutUser);
+  const [initialPlayerCount, setInitialPlayerCount] = useState(0);
+  const [initialComputerCount, setInitialComputerCount] = useState(0);
+
   const dispatch = useDispatch();
 
-  
   const handleDispatch = () => {
-    // const computerCount = document.querySelector("#computerCount");
-    const playerCount = document.querySelector("#playerCount");
-    // const allGames = Number(computerCount.innerHTML) + Number(playerCount.innerHTML);
-    //     console.log(info);
+    const computerCount = Number(
+      document.querySelector("#computerCount").innerHTML
+    );
+    let playerCount = Number(document.querySelector("#playerCount").innerHTML);
+
+    const playerCountDifference = playerCount - initialPlayerCount;
+    const computerCountDifference = computerCount - initialComputerCount;
+
     const updatedInfo = {
       username: user.username,
       time: info.time,
-      victory: info.victory + Number(playerCount.innerHTML),
-      allGames: info.allGames + 1,
+      victory: info.victory + playerCountDifference,
+      allGames: info.allGames + playerCountDifference + computerCountDifference,
     };
-    dispatch(updateGameInfo(updatedInfo))
+    dispatch(updateGameInfo(updatedInfo));
+    setInitialPlayerCount(playerCount);
+    setInitialComputerCount(computerCount);
   };
- 
 
   useEffect(() => {
     // Ініціалізуємо логіку гри після того, як компонент було змонтовано
     const view = new View();
-    gameLogicRef.current = new GameLogic(7, view);
+    gameLogicRef.current = new GameLogic(7, handleDispatch, view);
 
-      newParty();
+    newParty();
 
     $(document).ready(() => {
       $("#user").click(() => {
@@ -47,12 +53,23 @@ export default function GamePage() {
       $("#computer").click(() => {
         newParty();
         gameLogicRef.current.computer.randomStep(
-          7, 
+          7,
           gameLogicRef.current.gameModel,
           gameLogicRef.current.view
         );
       });
     });
+
+    ////////////////////////////////////////
+    const playerCount = Number(
+      document.querySelector("#playerCount").innerHTML
+    );
+    const computerCount = Number(
+      document.querySelector("#computerCount").innerHTML
+    );
+    setInitialComputerCount(computerCount);
+    setInitialPlayerCount(playerCount);
+    /////////////////////////////////////////
 
     // Встановлюємо обробник кліків на всі клітинки гри
     const articles = $("#game__board td");
@@ -65,7 +82,7 @@ export default function GamePage() {
     restartButton.addEventListener("click", () => {
       newParty();
     });
-   
+
     return () => {
       // Прибирання обробників подій при розмонтуванні компонента
       restartButton.removeEventListener("click", () => {
@@ -79,6 +96,10 @@ export default function GamePage() {
     // Скидання UI гри на початок партії
     gameLogicRef.current.view.restart(document.getElementById("game__board"));
     gameLogicRef.current.clearModel();
+    const articles = $("#game__board td");
+    $(articles).click(function () {
+      gameLogicRef.current.clickOnCell(this);
+    });
   };
 
   return (
@@ -94,6 +115,7 @@ export default function GamePage() {
                 <button
                   id="user"
                   className={css.choosePlayer__content__description__text}
+                  onClick={handleDispatch}
                 >
                   <FaUser />
                   Ви
@@ -103,6 +125,7 @@ export default function GamePage() {
                 <button
                   id="computer"
                   className={css.choosePlayer__content__description__text}
+                  onClick={handleDispatch}
                 >
                   Комп`ютер
                   <FaRobot />

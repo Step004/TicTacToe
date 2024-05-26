@@ -1,14 +1,16 @@
 import Swal from "sweetalert2";
+import $ from "jquery";
+
 
 export default class View {
-  constructor(gameLogic) {
+  constructor(gameLogic, handleDispatch) {
     this.gameLogic = gameLogic;
+    this.handleDispatch = handleDispatch;
 
     // Ініціалізація потрібних HTML елементів
     this.board = document.getElementById("game__board");
     this.compCountHtml = document.getElementById("computerCount");
     this.playerCountHtml = document.getElementById("playerCount");
-    
   }
 
   // Оновлення UI в залежності від результату партії
@@ -22,17 +24,20 @@ export default class View {
         Number(this.playerCountHtml.innerText) + 1;
     }
 
-    Swal.fire({ title: message, icon: alert });
+    Swal.fire({
+      title: message,
+      icon: alert,
+      didClose: () => {
+        console.log(this.handleDispatch());
+      },
+    });
     this.removeEvent();
-    this.showBlock(".choosePlayer");
   }
 
   // Видалення подій, повішених на клітинки ігрового поля
   removeEvent() {
-    const elements = this.board.getElementsByTagName("td");
-    for (let element of elements) {
-      element.onclick = null;
-    }
+    const articles = $("#game__board td");
+    $(articles).off("click", this.clickHandler);
   }
 
   // Рестарт гри
@@ -42,19 +47,6 @@ export default class View {
       element.innerHTML = "";
       element.classList.remove("x");
       element.classList.remove("o");
-    }
-    this.showBlock(".choosePlayer", "inlineBlock");
-  }
-
-  // Зміна видимості блоку
-  showBlock(selector, displayStyle = "block") {
-    const element = document.querySelector(selector);
-    if (element) {
-      if (window.getComputedStyle(element).display === "none") {
-        element.style.display = displayStyle;
-      } else {
-        element.style.display = "none";
-      }
     }
   }
 
