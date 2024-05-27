@@ -14,11 +14,11 @@ export default function Navigation() {
   return (
     <nav>
       <NavLink to="/" className={buildLinkClass}>
-        Home
+        Правила
       </NavLink>
       {isLoggedIn && (
         <NavLink to="/contacts" className={buildLinkClass}>
-          User
+          Користувач
         </NavLink>
       )}
       {/* {isLoggedIn && (
